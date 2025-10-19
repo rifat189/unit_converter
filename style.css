@@ -47,3 +47,19 @@ button:hover {
   font-weight: bold;
   margin-top: 15px;
 }
+
+#history {
+  text-align: left;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  margin-top: 5px;
+  list-style-type: disc;
+}
+
+#history li {
+  margin: 3px 0;
+}

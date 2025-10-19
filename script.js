@@ -28,6 +28,7 @@ function convert() {
   const from = document.getElementById("fromUnit").value;
   const to = document.getElementById("toUnit").value;
   const resultText = document.getElementById("result");
+  const historyList = document.getElementById("history");
 
   if (isNaN(value)) {
     resultText.innerText = "Please enter a valid number!";
@@ -37,7 +38,6 @@ function convert() {
   let result;
 
   if (type === "length") {
-    // Convert everything to meters first
     const inMeters =
       from === "kilometer"
         ? value * 1000
@@ -52,7 +52,6 @@ function convert() {
         ? inMeters / 1609.34
         : inMeters;
   } else if (type === "weight") {
-    // Convert everything to grams first
     const inGrams =
       from === "kilogram"
         ? value * 1000
@@ -78,7 +77,13 @@ function convert() {
     else if (to === "Kelvin") result = celsius + 273.15;
   }
 
-  resultText.innerText = `${value} ${from} = ${result.toFixed(2)} ${to}`;
+  const roundedResult = result.toFixed(2);
+  resultText.innerText = `${value} ${from} = ${roundedResult} ${to}`;
+
+  // Add to history
+  const listItem = document.createElement("li");
+  listItem.innerText = `${value} ${from} → ${roundedResult} ${to}`;
+  historyList.prepend(listItem); // latest on top
 }
 
 // Initialize units on page load
